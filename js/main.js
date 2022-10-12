@@ -1,15 +1,14 @@
 // Рандомное число из диапазона
 
-function getRandomPositiveInteger(a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-  const randomNumber = Math.random();
-  const result = randomNumber * (upper - lower + 1) + lower;
-  const resultFloor = Math.floor(result);
-  return resultFloor;
+function getRandomInt (min, max) {
+  const minArgument = Math.ceil(min);
+  const maxArgument = Math.floor(max);
+  if (maxArgument <= minArgument || minArgument < 0 || maxArgument < 0 || typeof minArgument !== 'number' || typeof maxArgument !== 'number') {
+    return NaN;
+  } else {return Math.floor(Math.random() * ((maxArgument - minArgument + 1)) + minArgument);}
 }
 
-getRandomPositiveInteger (1, 158);
+getRandomInt (1, 140);
 
 // Проверка максимальной длины строки
 
