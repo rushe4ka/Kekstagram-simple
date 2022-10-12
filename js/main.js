@@ -1,41 +1,21 @@
 // Рандомное число из диапазона
 
-// Вообще не поняла как нужно было догадаться какая операция выдаст мне рандомное число. Поэтому просто скопировала все из MDN. Не понимаю как это работает
+function getRandomPositiveInteger(a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const randomNumber = Math.random();
+  const result = randomNumber * (upper - lower + 1) + lower;
+  const resultFloor = Math.floor(result);
+  return resultFloor;
+}
 
-const getRandomInt = function (min, max) { // Задала имя функции, записала ее в переменную, минимальное и максимальное значение - это параметры
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются в расчет
-};
-
-getRandomInt (1, 158);
+getRandomPositiveInteger (1, 158);
 
 // Проверка максимальной длины строки
 
+function checkStringLength(currentString, maxLength) {
+  return currentString.length <= maxLength;
+}
 
-const line = 'Хочешь еще этих мягких булочек';
-
-const checkCommentLength = function (minLength, maxLength) {
-
-  if (line.length > minLength && line.length < maxLength) {
-
-    const number = line.length;
-    // console.log ('Спасибо за ваше мнение');
-    return number;
-  }
-
-  // if (line.length < minLength {
-
-  //   const number = line.length;
-  //   console.log ('Комментарий слишком короткий');
-  // }
-
-  // if (line.length > maxLength {
-
-  //   const number = line.length;
-  //   console.log ('Комментарий слишком длинный');
-  // }
-};
-
-checkCommentLength (20, 140);
+checkStringLength ('Функция для проверки максимальной длины строки', 140);
 
