@@ -1,11 +1,9 @@
 // Рандомное число из диапазона
 
 function getRandomInt (min, max) {
-  const minArgument = Math.ceil(min);
-  const maxArgument = Math.floor(max);
-  if (maxArgument <= minArgument || minArgument < 0 || maxArgument < 0 || typeof minArgument !== 'number' || typeof maxArgument !== 'number') {
+  if (max <= min || min < 0 || max < 0 || typeof min !== 'number' || typeof max !== 'number') {
     return NaN;
-  } else {return Math.floor(Math.random() * ((maxArgument - minArgument + 1)) + minArgument);}
+  } else {return Math.floor(Math.random() * ((max - min + 1)) + min);}
 }
 
 getRandomInt (1, 140);
