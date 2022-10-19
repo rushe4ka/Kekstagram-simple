@@ -1,24 +1,28 @@
 // Рандомное число из диапазона
 
-function getRandomInt (min, max) {
-  if (min < 0 || max < 0 || typeof min !== 'number' || typeof max !== 'number') {
+// Функция взята из интернета и доработана
+// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
+
+function getRandomPositiveInteger (a, b) {
+
+  if (a < 0 || b < 0) {
     return NaN;
   }
 
-  if (max < min) {
-    [min, max] = [max, min];
-  }
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
 
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
 }
 
-getRandomInt (1, 140);
+getRandomPositiveInteger ( );
 
 // Проверка максимальной длины строки
 
-function checkStringLength(currentString, maxLength) {
-  return currentString.length <= maxLength;
+function checkStringLength (string, length) {
+  return string.length <= length;
 }
 
-checkStringLength ('Функция для проверки максимальной длины строки', 140);
-
+checkStringLength ( );
