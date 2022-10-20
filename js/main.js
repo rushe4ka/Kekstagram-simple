@@ -31,7 +31,7 @@ const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0,
 
 // 1. id, число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
 
-const GENERATE_ID = (getRandomPositiveInteger (1, 25));
+const GENERATE_ID = getRandomPositiveInteger (1, 25);
 
 // 2. url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
 
@@ -62,7 +62,7 @@ const GENERATE_COMMENTS = getRandomPositiveInteger (0, 200);
 const PICTURES_COUNT = 25;
 
 const userDescription = () => ({
-  id: `${getRandomArrayElement(GENERATE_ID)}`,
+  id: GENERATE_ID,
   url: `photos/${GENERATE_URL}.jpg`,
   description: `${getRandomArrayElement(DESCRIPTIONS)}`,
   likes: GENERATE_LIKES,
