@@ -29,16 +29,7 @@ function getRandomPositiveInteger (a, b) {
 
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-// 1. id, число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
-
-const GENERATE_ID = getRandomPositiveInteger (1, 25);
-
-// 2. url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-
-const GENERATE_URL = getRandomPositiveInteger (1, 25);
-
-// 3. description, строка — описание фотографии. Описание придумайте самостоятельно.
-
+// =============================
 const DESCRIPTIONS = [
   'Котики',
   'Щеночки',
@@ -50,25 +41,19 @@ const DESCRIPTIONS = [
   'Мир прекрасен',
 ];
 
-// 4. likes, число — количество лайков, поставленных фотографии. Случайное число от 15 до 200.
-
-const GENERATE_LIKES = getRandomPositiveInteger (15, 200);
-
-// 5. comments, число — количество комментариев, оставленных другими пользователями к этой фотографии. Случайное число от 0 до 200.
-
-const GENERATE_COMMENTS = getRandomPositiveInteger (0, 200);
-
-
 const PICTURES_COUNT = 25;
+let idCount = 1;
 
-const userDescription = () => ({
-  id: GENERATE_ID,
-  url: `photos/${GENERATE_URL}.jpg`,
-  description: `${getRandomArrayElement(DESCRIPTIONS)}`,
-  likes: GENERATE_LIKES,
-  comments: GENERATE_COMMENTS,
-});
+const userDescription = () => {
+  const newId = idCount++;
+
+  return {
+    id: newId,
+    url: `photos/${newId}.jpg`,
+    description: `${getRandomArrayElement(DESCRIPTIONS)}`,
+    likes: getRandomPositiveInteger (15, 200),
+    comments: getRandomPositiveInteger (0, 200)
+  };
+};
 
 const pictureDescriptions = Array.from({length: PICTURES_COUNT}, userDescription);
-
-console.log(pictureDescriptions);
