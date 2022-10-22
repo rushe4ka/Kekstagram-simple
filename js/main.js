@@ -1,24 +1,59 @@
+// Проверка максимальной длины строки
+
+// function checkStringLength (string, length) {
+//   return string.length <= length;
+// }
+
+// checkStringLength ( );
+
 // Рандомное число из диапазона
 
-function getRandomInt (min, max) {
-  if (min < 0 || max < 0 || typeof min !== 'number' || typeof max !== 'number') {
+// Функция взята из интернета и доработана
+// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
+
+function getRandomPositiveInteger (a, b) {
+
+  if (a < 0 || b < 0) {
     return NaN;
   }
 
-  if (max < min) {
-    [min, max] = [max, min];
-  }
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
 
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
 }
 
-getRandomInt (1, 140);
+// Получить рандомный элемент массива
 
-// Проверка максимальной длины строки
+const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-function checkStringLength(currentString, maxLength) {
-  return currentString.length <= maxLength;
-}
+// =============================
+const DESCRIPTIONS = [
+  'Котики',
+  'Щеночки',
+  'Бабочки',
+  'Лето',
+  'Зима',
+  'Милахи',
+  'Мой завтрак',
+  'Мир прекрасен',
+];
 
-checkStringLength ('Функция для проверки максимальной длины строки', 140);
+const PICTURES_COUNT = 25;
+let idCount = 1;
 
+const userDescription = () => {
+  const newId = idCount++;
+
+  return {
+    id: newId,
+    url: `photos/${newId}.jpg`,
+    description: `${getRandomArrayElement(DESCRIPTIONS)}`,
+    likes: getRandomPositiveInteger (15, 200),
+    comments: getRandomPositiveInteger (0, 200)
+  };
+};
+
+const pictureDescriptions = Array.from({length: PICTURES_COUNT}, userDescription);
