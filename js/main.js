@@ -1,3 +1,3 @@
-import {getPictureDescriptions} from './get-picture-descriptions.js';
+import {getPictureDescriptions} from 'get-picture-descriptions.js';
 
 getPictureDescriptions();
