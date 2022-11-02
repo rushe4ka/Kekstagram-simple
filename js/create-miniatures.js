@@ -1,4 +1,4 @@
-import {getPictureDescriptions} from '../js/get-picture-descriptions.js';
+import {getPictureDescriptions} from './get-picture-descriptions.js';
 
 const pictures = document.querySelector('.pictures'); // поле для картинок
 const templatePicture = document.querySelector('#picture')
