@@ -1,10 +1,10 @@
 // Проверка максимальной длины строки
 
-function checkStringLength (string, length) {
-  return string.length <= length;
-}
+// function checkStringLength (string, length) {
+//   return string.length <= length;
+// }
 
-checkStringLength();
+// checkStringLength();
 
 // Рандомное число из диапазона
 
