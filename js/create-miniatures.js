@@ -1,4 +1,4 @@
-import {getPictureDescriptions} from 'get-picture-descriptions.js';
+import {getPictureDescriptions} from '../js/get-picture-descriptions.js';
 
 const pictures = document.querySelector('.pictures'); // поле для картинок
 const templatePicture = document.querySelector('#picture')
@@ -11,7 +11,7 @@ const usersPicturesFragment = document.createDocumentFragment();
 
 usersPictures.forEach(({url, comments, likes}) => {
   const pictureElement = templatePicture.cloneNode(true); // клонирую образец разметки
-  pictureElement.querySelector('.picture__img').img.src = url;
+  pictureElement.querySelector('.picture__img').src = url;
   pictureElement.querySelector('.picture__comments').textContent = comments;
   pictureElement.querySelector('.picture__likes').textContent = likes;
   usersPicturesFragment.appendChild(pictureElement); // добавляю картинку в фрагмент
