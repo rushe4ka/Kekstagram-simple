@@ -1,3 +1,1 @@
-import {getPictureDescriptions} from 'get-picture-descriptions.js';
-
-getPictureDescriptions();
+import 'create-miniatures.js';
