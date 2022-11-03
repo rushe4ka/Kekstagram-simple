@@ -1,2 +1,2 @@
 import './create-miniatures.js';
-import './form.js';
+import './open-close-overlay-modal.js';
