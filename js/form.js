@@ -2,7 +2,7 @@ import {isEscapeKey, isEnterKey} from './util.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-const uploadOverlayCancel = document.querySelector('#upload-cancel');
+const uploadOverlayCancel = uploadOverlay.querySelector('#upload-cancel');
 
 const onModalEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
