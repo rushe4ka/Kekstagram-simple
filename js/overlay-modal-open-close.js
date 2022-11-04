@@ -1,6 +1,7 @@
 import {isEscapeKey, isEnterKey} from './util.js';
 
-const uploadInput = document.querySelector('.img-upload__input');
+const body = document.querySelector('body');
+const uploadInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadOverlayCancel = uploadOverlay.querySelector('#upload-cancel');
 
@@ -13,17 +14,19 @@ const onModalEscKeydown = (evt) => {
 
 function openOverlayModal() {
   uploadOverlay.classList.remove('hidden');
+  body.classList.add('modal-open');
   document.addEventListener('keydown', onModalEscKeydown);
 }
 
 function closeOverlayModal() {
   uploadOverlay.classList.add('hidden');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onModalEscKeydown);
 }
 
 // при изменении поля загрузки открыть окно редактирования
 
-uploadInput.addEventListener('input', () => {
+uploadInput.addEventListener('change', () => {
   openOverlayModal();
 });
 
