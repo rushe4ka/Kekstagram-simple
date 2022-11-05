@@ -5,7 +5,7 @@ const imgUploadScale = document.querySelector('.img-upload__scale');
 const scaleControlSmaller = imgUploadScale.querySelector('.scale__control--smaller');
 const scaleControlBigger = imgUploadScale.querySelector('.scale__control--bigger');
 const scaleControlValue = imgUploadScale.querySelector('.scale__control--value');
-const imgUploadPreview = document.querySelector('.img-upload__preview');
+const imgUploadPreview = document.querySelector('.img-upload__preview img');
 const maxScale = 100;
 const minScale = 25;
 const step = 25;
@@ -18,7 +18,7 @@ scaleControlSmaller.addEventListener('click', () => {
     const newValue = numberValue - step;
 
     scaleControlValue.value = `${newValue}%`;
-    imgUploadPreview.style.transform = `scale(0.${newValue})`;
+    imgUploadPreview.style.transform = `scale(${newValue / 100})`;
   }
 });
 
@@ -30,6 +30,8 @@ scaleControlBigger.addEventListener('click', () => {
     const newValue = numberValue + step;
 
     scaleControlValue.value = `${newValue}%`;
-    imgUploadPreview.style.transform = `scale(0.${newValue})`;
+    imgUploadPreview.style.transform = `scale(${newValue / 100})`;
   }
 });
+
+
