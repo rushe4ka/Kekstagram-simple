@@ -1,7 +1,7 @@
 // import { checkStringLength } from './util';
 
 const uploadForm = document.querySelector('.img-upload__form');
-const comment = uploadForm.querySelector('text__description');
+const comment = uploadForm.querySelector('.text__description');
 const minCommentLength = 20;
 const maxCommentLength = 140;
 
@@ -10,23 +10,26 @@ const pristine = new Pristine(
   {
     classTo: 'text__description',
     errorTextParent: 'text__description',
+    errorClass: 'form__item--invalid',
+    successClass: 'form__item--valid',
+    errorTextTag: 'span',
+    errorTextClass: 'form__error'
   },
   true
 );
 
-const validateCommentLength = function (value) {
+function validateCommentLength (value) {
   return value.length >= minCommentLength && value.length <= maxCommentLength;
-};
+}
 
-const createValidateCommentError = function () {
-  return `Длина комментария от ${minCommentLength} до ${maxCommentLength} знаков`;
-};
-
-pristine.addValidator (comment, validateCommentLength, createValidateCommentError);
+pristine.addValidator(
+  comment,
+  validateCommentLength,
+  `Длина комментария от ${minCommentLength} до ${maxCommentLength} знаков`
+);
 
 
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-
   pristine.validate(comment);
 });
