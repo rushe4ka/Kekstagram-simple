@@ -14,7 +14,7 @@ scaleControlSmaller.addEventListener('click', () => {
   const currentValue = scaleControlValue.value;
   const numberValue = toNumber(removeLastChar(currentValue));
 
-  if (numberValue > minScale && numberValue < maxScale) {
+  if (numberValue > minScale && numberValue <= maxScale) {
     const newValue = numberValue - step;
 
     scaleControlValue.value = `${newValue}%`;
@@ -26,7 +26,7 @@ scaleControlBigger.addEventListener('click', () => {
   const currentValue = scaleControlValue.value;
   const numberValue = toNumber(removeLastChar(currentValue));
 
-  if (numberValue > minScale && numberValue < maxScale) {
+  if (numberValue >= minScale && numberValue < maxScale) {
     const newValue = numberValue + step;
 
     scaleControlValue.value = `${newValue}%`;
