@@ -32,9 +32,23 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
+// Превратить строку в число
+
+function toNumber (string) {
+  return Number(string);
+}
+
+// Удалить последний символ в строке
+
+function removeLastChar (string) {
+  return string ? string.slice(0,-1) : string;
+}
+
 export {
   getRandomPositiveInteger,
   getRandomArrayElement,
   isEscapeKey,
-  isEnterKey
+  isEnterKey,
+  toNumber,
+  removeLastChar
 };
