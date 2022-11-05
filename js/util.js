@@ -1,10 +1,8 @@
 // Проверка максимальной длины строки
 
-function checkStringLength (string, length) {
-  return string.length <= length;
-}
-
-checkStringLength('Комментарий', 5);
+// function checkStringLength (string, length) {
+//   return string.length <= length;
+// }
 
 // Рандомное число из диапазона
 // Функция взята из интернета и доработана
