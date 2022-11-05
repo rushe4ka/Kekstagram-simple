@@ -1,4 +1,4 @@
-import {isEscapeKey, isEnterKey} from './util.js';
+import { isEscapeKey, isEnterKey } from './util.js';
 
 const body = document.querySelector('body');
 const uploadInput = document.querySelector('#upload-file');
