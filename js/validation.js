@@ -2,34 +2,31 @@
 
 const uploadForm = document.querySelector('.img-upload__form');
 const comment = uploadForm.querySelector('.text__description');
-const minCommentLength = 20;
-const maxCommentLength = 140;
+const MIN_COMMENT_LENGTH = 20;
+const MAX_COMMENT_LENGTH = 140;
 
 const pristine = new Pristine(
   uploadForm,
   {
-    classTo: 'text__description',
-    errorTextParent: 'text__description',
-    errorClass: 'form__item--invalid',
-    successClass: 'form__item--valid',
-    errorTextTag: 'span',
-    errorTextClass: 'form__error'
+    classTo: 'img-upload__text',
+    errorTextParent: 'img-upload__text'
   },
   true
 );
 
 function validateCommentLength (value) {
-  return value.length >= minCommentLength && value.length <= maxCommentLength;
+  return value.length >= MIN_COMMENT_LENGTH && value.length <= MAX_COMMENT_LENGTH;
 }
 
 pristine.addValidator(
   comment,
   validateCommentLength,
-  `Длина комментария от ${minCommentLength} до ${maxCommentLength} знаков`
+  `Длина комментария от ${MIN_COMMENT_LENGTH} до ${MAX_COMMENT_LENGTH} знаков`
 );
 
 
 uploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate(comment);
+  if (!pristine.validate()) {
+    evt.preventDefault();
+  }
 });
