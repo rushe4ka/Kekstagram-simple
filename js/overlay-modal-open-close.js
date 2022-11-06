@@ -1,10 +1,10 @@
 import { isEscapeKey, isEnterKey } from './util.js';
 
 const body = document.querySelector('body');
+const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = body.querySelector('#upload-file');
 const uploadOverlay = body.querySelector('.img-upload__overlay');
 const uploadOverlayCancel = uploadOverlay.querySelector('#upload-cancel');
-const imgUploadPreview = uploadOverlay.querySelector('.img-upload__preview');
 
 const onModalEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -23,7 +23,7 @@ function closeOverlayModal() {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onModalEscKeydown);
-  imgUploadPreview.removeAttribute('style');
+  uploadForm.reset();
 }
 
 // при изменении поля загрузки открыть окно редактирования
