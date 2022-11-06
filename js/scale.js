@@ -1,5 +1,4 @@
-import { toNumber } from './util.js';
-import { removeLastChar } from './util.js';
+import { toNumber, removeLastChar } from './util.js';
 
 const imgUploadScale = document.querySelector('.img-upload__scale');
 const scaleControlSmaller = imgUploadScale.querySelector('.scale__control--smaller');
@@ -38,4 +37,11 @@ scaleControlBigger.addEventListener('click', () => {
   }
 });
 
+// сбросить значение масштаба при закрытии окна
 
+const resetScale = () => {
+  scaleControlValue.value = `${MAX_SCALE}%`;
+  imgUploadPreview.style.transform = `scale(${MAX_SCALE / 100})`;
+};
+
+export { resetScale };
