@@ -5,6 +5,7 @@ const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = body.querySelector('#upload-file');
 const uploadOverlay = body.querySelector('.img-upload__overlay');
 const uploadOverlayCancel = uploadOverlay.querySelector('#upload-cancel');
+const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
 const onModalEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -24,6 +25,7 @@ function closeOverlayModal() {
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onModalEscKeydown);
   uploadForm.reset();
+  imgUploadPreview.removeAttribute('class');
 }
 
 // при изменении поля загрузки открыть окно редактирования
