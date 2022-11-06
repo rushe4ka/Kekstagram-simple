@@ -1,5 +1,3 @@
-// import { checkStringLength } from './util';
-
 const uploadForm = document.querySelector('.img-upload__form');
 const comment = uploadForm.querySelector('.text__description');
 const MIN_COMMENT_LENGTH = 20;
