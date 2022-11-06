@@ -28,4 +28,4 @@ const userDescription = () => {
 
 const getPictureDescriptions = () => Array.from({length: PICTURES_COUNT}, userDescription);
 
-export {getPictureDescriptions};
+export { getPictureDescriptions };
