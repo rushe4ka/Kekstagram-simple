@@ -19,6 +19,10 @@ uploadInput.addEventListener('keydown', (evt) => {
   }
 });
 
+// при клике на крестик закрыть окно редактирования
+
+const onModalEscButtonClick = uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
+
 // при нажатии Enter закрыть окно редактирования
 
 const onModalEscKeydown = (evt) => {
@@ -27,10 +31,6 @@ const onModalEscKeydown = (evt) => {
     closeOverlayModal();
   }
 };
-
-// при клике на крестик закрыть окно редактирования
-
-const onModalEscButtonClick = uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
 
 // открытие окна редактирования изображения
 
