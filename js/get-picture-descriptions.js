@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, getRandomArrayElement} from 'util.js';
+import { getRandomPositiveInteger, getRandomArrayElement } from './util.js';
 
 const DESCRIPTIONS = [
   'Котики',
@@ -28,4 +28,4 @@ const userDescription = () => {
 
 const getPictureDescriptions = () => Array.from({length: PICTURES_COUNT}, userDescription);
 
-export {getPictureDescriptions};
+export { getPictureDescriptions };
