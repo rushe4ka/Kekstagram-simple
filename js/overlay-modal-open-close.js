@@ -39,7 +39,7 @@ function openOverlayModal() {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onModalEscKeydown);
-  document.removeEventListener('click', onModalEscButtonClick);
+  document.addEventListener('click', onModalEscButtonClick);
 }
 
 // закрытие окна редактирования изображения
@@ -48,6 +48,7 @@ function closeOverlayModal() {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onModalEscKeydown);
+  document.removeEventListener('click', onModalEscButtonClick);
   uploadForm.reset();
   imgUploadPreview.removeAttribute('class');
   resetScale();
