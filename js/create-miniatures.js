@@ -19,10 +19,4 @@ const renderPicturesList = (usersPictures) => {
   pictures.appendChild(usersPicturesFragment);
 };
 
-fetch(
-  'https://27.javascript.pages.academy/kekstagram-simple/data'
-)
-  .then((response) => response.json())
-  .then((data) => {
-    renderPicturesList(data);
-  });
+export { renderPicturesList };
