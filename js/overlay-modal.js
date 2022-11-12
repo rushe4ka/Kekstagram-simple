@@ -53,3 +53,5 @@ function closeOverlayModal() {
   imgUploadPreview.removeAttribute('class');
   resetScale();
 }
+
+export { closeOverlayModal };

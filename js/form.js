@@ -3,6 +3,8 @@ const comment = uploadForm.querySelector('.text__description');
 const MIN_COMMENT_LENGTH = 20;
 const MAX_COMMENT_LENGTH = 140;
 
+// подключение Pristine
+
 const pristine = new Pristine(
   uploadForm,
   {
@@ -11,6 +13,8 @@ const pristine = new Pristine(
   },
   true
 );
+
+// валидация длины комментария
 
 function validateCommentLength (value) {
   return value.length >= MIN_COMMENT_LENGTH && value.length <= MAX_COMMENT_LENGTH;
@@ -22,9 +26,26 @@ pristine.addValidator(
   `Длина комментария от ${MIN_COMMENT_LENGTH} до ${MAX_COMMENT_LENGTH} знаков`
 );
 
+// прослушка кнопки отправки формы
 
-uploadForm.addEventListener('submit', (evt) => {
-  if (!pristine.validate()) {
+const setUserFormSubmit = (onSuccess) => {
+  uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  }
-});
+
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      const formData = new FormData(evt.target);
+
+      fetch(
+        'https://27.javascript.pages.academy/kekstagram-simple',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      ).then(() => onSuccess());
+    }
+  });
+};
+
+export { setUserFormSubmit };
