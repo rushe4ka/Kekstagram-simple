@@ -1,11 +1,9 @@
-import './create-miniatures.js';
-import './overlay-modal-open-close.js';
 import './overlay-effect.js';
-import './validation.js';
 import './scale.js';
-import './form.js';
 
 import { renderPicturesList } from './create-miniatures.js';
+import { closeOverlayModal } from './overlay-modal.js';
+import { setUserFormSubmit } from './form.js';
 
 // получаем список картинок с сервера
 
@@ -16,3 +14,7 @@ fetch(
   .then((data) => {
     renderPicturesList(data);
   });
+
+// закрываем окно редактирования при отправке формы
+
+setUserFormSubmit(closeOverlayModal);
