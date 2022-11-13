@@ -1,4 +1,4 @@
-import { showAlert } from './util.js';
+import { showErrorMessage, showSuccessMessage } from './modals.js';
 import { sendData } from './api.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
@@ -54,9 +54,10 @@ const setUserFormSubmit = (onSuccess) => {
         () => {
           onSuccess();
           unblockSubmitButton();
+          showSuccessMessage();
         },
         () => {
-          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+          showErrorMessage();
           unblockSubmitButton();
         },
         new FormData(evt.target),
