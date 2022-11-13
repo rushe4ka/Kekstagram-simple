@@ -1,3 +1,5 @@
+import { showAlert } from './util.js';
+
 const uploadForm = document.querySelector('.img-upload__form');
 const comment = uploadForm.querySelector('.text__description');
 const MIN_COMMENT_LENGTH = 20;
@@ -43,7 +45,17 @@ const setUserFormSubmit = (onSuccess) => {
           method: 'POST',
           body: formData,
         }
-      ).then(() => onSuccess());
+      )
+        .then((response) => {
+          if (response.ok) {
+            onSuccess();
+          } else {
+            showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+          }
+        })
+        .catch(() => {
+          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+        });
     }
   });
 };
