@@ -20,9 +20,7 @@ const pristine = new Pristine(
 
 // валидация длины комментария
 
-function validateCommentLength (value) {
-  return value.length >= MIN_COMMENT_LENGTH && value.length <= MAX_COMMENT_LENGTH;
-}
+const validateCommentLength = (value) => value.length >= MIN_COMMENT_LENGTH && value.length <= MAX_COMMENT_LENGTH;
 
 pristine.addValidator(
   comment,
