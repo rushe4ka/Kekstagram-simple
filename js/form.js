@@ -1,11 +1,11 @@
 import { showErrorMessage, showSuccessMessage } from './modals.js';
 import { sendData } from './api.js';
 
+const MIN_COMMENT_LENGTH = 20;
+const MAX_COMMENT_LENGTH = 140;
 const uploadForm = document.querySelector('.img-upload__form');
 const comment = uploadForm.querySelector('.text__description');
 const submitButton = uploadForm.querySelector('#upload-submit');
-const MIN_COMMENT_LENGTH = 20;
-const MAX_COMMENT_LENGTH = 140;
 
 // подключение Pristine
 
