@@ -13,8 +13,6 @@ const removeLastChar = (string) => string ? string.slice(0,-1) : string;
 // ============================================ //
 
 export {
-  // getRandomPositiveInteger,
-  // getRandomArrayElement,
   isEscapeKey,
   isEnterKey,
   removeLastChar
