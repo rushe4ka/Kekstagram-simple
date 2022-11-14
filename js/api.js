@@ -1,12 +1,11 @@
-// окно предупреждения об ошибке получения данных с сервера
-
 const alertMessage = 'Не удалось отправить форму. Попробуйте ещё раз';
+const serverUrl = 'https://27.javascript.pages.academy/kekstagram-simple/data';
 
 // получаем список картинок с сервера
 
 const getData = (onSuccess, onFail) => {
   fetch(
-    'https://27.javascript.pages.academy/kekstagram-simple/data'
+    serverUrl
   )
     .then((response) => response.json())
     .then((data) => {
@@ -21,7 +20,7 @@ const getData = (onSuccess, onFail) => {
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://27.javascript.pages.academy/kekstagram-simple',
+    serverUrl,
     {
       method: 'POST',
       body
