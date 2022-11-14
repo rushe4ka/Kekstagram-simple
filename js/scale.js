@@ -1,4 +1,4 @@
-import { toNumber, removeLastChar } from './util.js';
+import { removeLastChar } from './util.js';
 
 const imgUploadScale = document.querySelector('.img-upload__scale');
 const scaleControlSmaller = imgUploadScale.querySelector('.scale__control--smaller');
@@ -13,7 +13,7 @@ const STEP = 25;
 
 scaleControlSmaller.addEventListener('click', () => {
   const currentValue = scaleControlValue.value;
-  const numberValue = toNumber(removeLastChar(currentValue));
+  const numberValue = Number(removeLastChar(currentValue));
 
   if (numberValue > MIN_SCALE && numberValue <= MAX_SCALE) {
     const newValue = numberValue - STEP;
@@ -27,7 +27,7 @@ scaleControlSmaller.addEventListener('click', () => {
 
 scaleControlBigger.addEventListener('click', () => {
   const currentValue = scaleControlValue.value;
-  const numberValue = toNumber(removeLastChar(currentValue));
+  const numberValue = Number(removeLastChar(currentValue));
 
   if (numberValue >= MIN_SCALE && numberValue < MAX_SCALE) {
     const newValue = numberValue + STEP;
