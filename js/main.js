@@ -8,8 +8,5 @@ import { renderPicturesList } from './create-miniatures.js';
 
 getData ((data) => {
   renderPicturesList(data);
+  setUserFormSubmit(closeOverlayModal); // создание обработчика отправки формы
 });
-
-// закрываем окно редактирования при отправке формы
-
-setUserFormSubmit(closeOverlayModal);
