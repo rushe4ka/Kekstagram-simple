@@ -73,6 +73,8 @@ const onMessageEscKeydown = (evt) => {
   }
 };
 
+// сообщение об успешной отправке формы
+
 const showSuccessMessage = () => {
   const successMessage = templateSuccess.cloneNode(true);
   document.addEventListener('keydown', onMessageEscKeydown);
@@ -81,13 +83,18 @@ const showSuccessMessage = () => {
   document.body.style.overflow = 'hidden';
 };
 
-const showErrorMessage = () => {
+// сообщение об ошибке
+
+const showErrorMessage = (message) => {
   const errorMessage = templateError.cloneNode(true);
   document.addEventListener('keydown', onMessageEscKeydown);
+  errorMessage.querySelector('.error__title').textContent = message;
   errorMessage.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
   document.body.append(errorMessage);
   document.body.style.overflow = 'hidden';
 };
+
+// скрыть сообщение
 
 function hideMessage() {
   const messageElement = document.querySelector('.success') || document.querySelector('.error');
