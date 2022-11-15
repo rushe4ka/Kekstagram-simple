@@ -1,13 +1,13 @@
 import { removeLastChar } from './util.js';
 
+const MAX_SCALE = 100;
+const MIN_SCALE = 25;
+const STEP = 25;
 const imgUploadScale = document.querySelector('.img-upload__scale');
 const scaleControlSmaller = imgUploadScale.querySelector('.scale__control--smaller');
 const scaleControlBigger = imgUploadScale.querySelector('.scale__control--bigger');
 const scaleControlValue = imgUploadScale.querySelector('.scale__control--value');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
-const MAX_SCALE = 100;
-const MIN_SCALE = 25;
-const STEP = 25;
 
 // кнопка "меньше"
 
