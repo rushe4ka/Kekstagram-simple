@@ -1,17 +1,17 @@
-const errorMessage = 'Ошибка загрузки данных';
-const serverGetDataUrl = 'https://27.javascript.pages.academy/kekstagram-simple/data';
-const serverSendDataUrl = 'https://27.javascript.pages.academy/kekstagram-simple';
+const ERROR_MESSAGE = 'Ошибка загрузки данных';
+const SERVER_GET_DATA_URL = 'https://27.javascript.pages.academy/kekstagram-simple/data';
+const SERVER_SEND_DATA_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
 
 // получаем список картинок с сервера
 
 const getData = (onSuccess, onFail) => {
-  fetch(serverGetDataUrl)
+  fetch(SERVER_GET_DATA_URL)
     .then((response) => response.json())
     .then((data) => {
       onSuccess(data);
     })
     .catch(() => {
-      onFail(errorMessage);
+      onFail(ERROR_MESSAGE);
     });
 };
 
@@ -19,7 +19,7 @@ const getData = (onSuccess, onFail) => {
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    serverSendDataUrl,
+    SERVER_SEND_DATA_URL,
     {
       method: 'POST',
       body
@@ -29,11 +29,11 @@ const sendData = (onSuccess, onFail, body) => {
       if (response.ok) {
         onSuccess();
       } else {
-        onFail(errorMessage);
+        onFail(ERROR_MESSAGE);
       }
     })
     .catch(() => {
-      onFail(errorMessage);
+      onFail(ERROR_MESSAGE);
     });
 };
 
