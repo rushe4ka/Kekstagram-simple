@@ -15,6 +15,6 @@ getData ((data) => {
   renderPicturesList(data);
   setUserFormSubmit(closeOverlayModal); // создание обработчика отправки формы
   hideSlider();
-}, (text) => {
+}, () => {
   showErrorMessage('Сервер недоступен');
 });
