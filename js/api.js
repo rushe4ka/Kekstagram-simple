@@ -1,6 +1,6 @@
 const ERROR_MESSAGE = 'Ошибка загрузки данных';
 const SERVER_GET_DATA_URL = 'https://27.javascript.pages.academ/kekstagram-simple/data';
-const SERVER_SEND_DATA_URL = 'https://27.javascript.pages.academ/kekstagram-simple';
+const SERVER_SEND_DATA_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
 
 // получаем список картинок с сервера
 
@@ -12,6 +12,10 @@ const getData = (onSuccess, onFail) => {
     })
     .catch(() => {
       onFail(ERROR_MESSAGE);
+      const errorButton = document.querySelector('.error__button');
+      errorButton.addEventListener('click', () => {
+        document.location.reload();
+      });
     });
 };
 
