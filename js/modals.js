@@ -76,20 +76,21 @@ const onMessageEscKeydown = (evt) => {
 // сообщение об успешной отправке формы
 
 const showSuccessMessage = () => {
-  const successMessage = templateSuccess.cloneNode(true);
+  const successMessageElement = templateSuccess.cloneNode(true);
   document.addEventListener('keydown', onMessageEscKeydown);
   document.addEventListener('click', onOverlayClick);
-  document.body.append(successMessage);
+  document.body.append(successMessageElement);
   document.body.style.overflow = 'hidden';
 };
 
 // сообщение об ошибке
 
-const showErrorMessage = () => {
-  const errorMessage = templateError.cloneNode(true);
+const showErrorMessage = (text) => {
+  const errorMessageElement = templateError.cloneNode(true);
   document.addEventListener('keydown', onMessageEscKeydown);
-  errorMessage.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
-  document.body.append(errorMessage);
+  errorMessageElement.querySelector('.error__title').textContent = text;
+  errorMessageElement.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
+  document.body.append(errorMessageElement);
   document.body.style.overflow = 'hidden';
 };
 
