@@ -1,4 +1,5 @@
-const ERROR_MESSAGE = 'Ошибка загрузки данных';
+const ERROR_GET_DATA_MESSAGE = 'Ошибка загрузки данных';
+const ERROR_SEND_DATA_MESSAGE = 'Ошибка загрузки файла';
 const SERVER_GET_DATA_URL = 'https://27.javascript.pages.academy/kekstagram-simple/data';
 const SERVER_SEND_DATA_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
 
@@ -11,7 +12,7 @@ const getData = (onSuccess, onFail) => {
       onSuccess(data);
     })
     .catch(() => {
-      onFail(ERROR_MESSAGE);
+      onFail(ERROR_GET_DATA_MESSAGE);
       const errorButton = document.querySelector('.error__button');
       errorButton.addEventListener('click', () => {
         document.location.reload();
@@ -33,11 +34,11 @@ const sendData = (onSuccess, onFail, body) => {
       if (response.ok) {
         onSuccess();
       } else {
-        onFail(ERROR_MESSAGE);
+        onFail(ERROR_SEND_DATA_MESSAGE);
       }
     })
     .catch(() => {
-      onFail(ERROR_MESSAGE);
+      onFail(ERROR_SEND_DATA_MESSAGE);
     });
 };
 
