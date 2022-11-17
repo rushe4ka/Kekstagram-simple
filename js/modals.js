@@ -85,10 +85,9 @@ const showSuccessMessage = () => {
 
 // сообщение об ошибке
 
-const showErrorMessage = (message) => {
+const showErrorMessage = () => {
   const errorMessage = templateError.cloneNode(true);
   document.addEventListener('keydown', onMessageEscKeydown);
-  errorMessage.querySelector('.error__title').textContent = message;
   errorMessage.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
   document.body.append(errorMessage);
   document.body.style.overflow = 'hidden';
