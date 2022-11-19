@@ -50,7 +50,7 @@ const onOverlayClick = () => hideModal();
 
 // при нажатии Esc закрыть модальное окно
 
-const onModalEscKeydown = (evt) => {
+const onEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     hideModal();
@@ -61,7 +61,7 @@ const onModalEscKeydown = (evt) => {
 
 const showSuccessMessage = () => {
   const successMessageElement = templateSuccess.cloneNode(true);
-  document.addEventListener('keydown', onModalEscKeydown);
+  document.addEventListener('keydown', onEscKeydown);
   document.addEventListener('click', onOverlayClick);
   document.body.append(successMessageElement);
   document.body.style.overflow = 'hidden';
@@ -71,7 +71,7 @@ const showSuccessMessage = () => {
 
 const showErrorMessage = (text) => {
   const errorMessageElement = templateError.cloneNode(true);
-  document.addEventListener('keydown', onModalEscKeydown);
+  document.addEventListener('keydown', onEscKeydown);
   errorMessageElement.querySelector('.error__title').textContent = text;
   errorMessageElement.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
   document.body.append(errorMessageElement);
@@ -83,7 +83,7 @@ const showErrorMessage = (text) => {
 function hideModal() {
   const messageElement = document.querySelector('.success') || document.querySelector('.error');
   messageElement.remove();
-  document.removeEventListener('keydown', onModalEscKeydown);
+  document.removeEventListener('keydown', onEscKeydown);
   document.removeEventListener('click', onOverlayClick);
   document.body.style.overflow = 'auto';
 }
@@ -105,14 +105,14 @@ uploadInput.addEventListener('keydown', (evt) => {
 function openOverlayModal() {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onModalEscKeydown);
+  document.addEventListener('keydown', onEscKeydown);
   uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
 }
 
 function closeOverlayModal() {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onModalEscKeydown);
+  document.removeEventListener('keydown', onEscKeydown);
   uploadOverlayCancel.removeEventListener('click', (closeOverlayModal));
   uploadForm.reset();
   imgUploadPreview.removeAttribute('class');
@@ -135,9 +135,7 @@ const unblockSubmitButton = () => {
 const setUserFormSubmit = (onSuccess) => {
   uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
     const isValid = pristine.validate();
-
     if (isValid) {
       blockSubmitButton();
       sendData(

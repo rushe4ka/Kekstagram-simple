@@ -1,7 +1,7 @@
 const ERROR_GET_DATA_MESSAGE = 'Ошибка загрузки данных';
 const ERROR_SEND_DATA_MESSAGE = 'Ошибка загрузки файла';
 const SERVER_GET_DATA_URL = 'https://27.javascript.pages.academy/kekstagram-simple/data';
-const SERVER_SEND_DATA_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
+const SERVER_SEND_DATA_URL = 'https://27.javascript.pages.academ/kekstagram-simple';
 
 // получаем список картинок с сервера
 
