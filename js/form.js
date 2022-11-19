@@ -46,7 +46,12 @@ const onErrorButtonClick = () => hideModal();
 
 // при клике в любое место закрыть модальное окно
 
-const onOverlayClick = () => hideModal();
+const handleOutside = (evt) => {
+  if (!evt.target.closest('div')) {
+    hideModal();
+    window.removeEventListener('click', handleOutside);
+  }
+};
 
 // при нажатии Esc закрыть модальное окно
 
@@ -62,7 +67,7 @@ const onEscKeydown = (evt) => {
 const showSuccessMessage = () => {
   const successMessageElement = templateSuccess.cloneNode(true);
   document.addEventListener('keydown', onEscKeydown);
-  document.addEventListener('click', onOverlayClick);
+  document.addEventListener('click', handleOutside);
   document.body.append(successMessageElement);
   document.body.style.overflow = 'hidden';
 };
@@ -72,6 +77,7 @@ const showSuccessMessage = () => {
 const showErrorMessage = (text) => {
   const errorMessageElement = templateError.cloneNode(true);
   document.addEventListener('keydown', onEscKeydown);
+  document.addEventListener('click', handleOutside);
   errorMessageElement.querySelector('.error__title').textContent = text;
   errorMessageElement.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
   document.body.append(errorMessageElement);
@@ -84,7 +90,7 @@ function hideModal() {
   const messageElement = document.querySelector('.success') || document.querySelector('.error');
   messageElement.remove();
   document.removeEventListener('keydown', onEscKeydown);
-  document.removeEventListener('click', onOverlayClick);
+  document.removeEventListener('click', handleOutside);
   document.body.style.overflow = 'auto';
 }
 
