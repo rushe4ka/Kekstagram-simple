@@ -40,24 +40,32 @@ pristine.addValidator(
   `Длина комментария от ${MIN_COMMENT_LENGTH} до ${MAX_COMMENT_LENGTH} знаков`
 );
 
-// окно предупреждения при отправке формы
+// при клике на кнопку закрыть модальное окно
 
-const onErrorButtonClick = () => hideMessage();
+const onErrorButtonClick = () => hideModal();
 
-const onOverlayClick = () => hideMessage();
+// при клике в любое место закрыть модальное окно
 
-const onMessageEscKeydown = (evt) => {
+const onOverlayClick = () => hideModal();
+
+// при нажатии Esc закрыть модальное окно
+
+const onModalEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    hideMessage();
+    hideModal();
   }
 };
+
+// при клике на крестик закрыть окно редактирования
+
+const onModalEscButtonClick = uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
 
 // сообщение об успешной отправке формы
 
 const showSuccessMessage = () => {
   const successMessageElement = templateSuccess.cloneNode(true);
-  document.addEventListener('keydown', onMessageEscKeydown);
+  document.addEventListener('keydown', onModalEscKeydown);
   document.addEventListener('click', onOverlayClick);
   document.body.append(successMessageElement);
   document.body.style.overflow = 'hidden';
@@ -67,21 +75,53 @@ const showSuccessMessage = () => {
 
 const showErrorMessage = (text) => {
   const errorMessageElement = templateError.cloneNode(true);
-  document.addEventListener('keydown', onMessageEscKeydown);
+  document.addEventListener('keydown', onModalEscKeydown);
   errorMessageElement.querySelector('.error__title').textContent = text;
   errorMessageElement.querySelector('.error__button').addEventListener('click', onErrorButtonClick);
   document.body.append(errorMessageElement);
   document.body.style.overflow = 'hidden';
 };
 
-// скрыть сообщение
+// скрыть модальное окно
 
-function hideMessage() {
+function hideModal() {
   const messageElement = document.querySelector('.success') || document.querySelector('.error');
   messageElement.remove();
-  document.removeEventListener('keydown', onMessageEscKeydown);
+  document.removeEventListener('keydown', onModalEscKeydown);
   document.removeEventListener('click', onOverlayClick);
   document.body.style.overflow = 'auto';
+}
+
+// при изменении поля загрузки открыть окно редактирования
+
+uploadInput.addEventListener('change', (openOverlayModal));
+
+// при фокусе с клавиатуры открыть окно редактирования
+
+uploadInput.addEventListener('keydown', (evt) => {
+  if (isEnterKey(evt)) {
+    openOverlayModal();
+  }
+});
+
+// открытие-закрытие окна редактирования изображения
+
+function openOverlayModal() {
+  uploadOverlay.classList.remove('hidden');
+  body.classList.add('modal-open');
+  document.addEventListener('keydown', onModalEscKeydown);
+  document.addEventListener('click', onModalEscButtonClick);
+}
+
+function closeOverlayModal() {
+  uploadOverlay.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onModalEscKeydown);
+  document.removeEventListener('click', onModalEscButtonClick);
+  uploadForm.reset();
+  imgUploadPreview.removeAttribute('class');
+  resetScale();
+  pristine.reset();
 }
 
 // прослушка кнопки отправки формы
@@ -119,53 +159,6 @@ const setUserFormSubmit = (onSuccess) => {
     }
   });
 };
-
-// при изменении поля загрузки открыть окно редактирования
-
-uploadInput.addEventListener('change', (openOverlayModal));
-
-// при фокусе с клавиатуры открыть окно редактирования
-
-uploadInput.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    openOverlayModal();
-  }
-});
-
-// при клике на крестик закрыть окно редактирования
-
-const onModalEscButtonClick = uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
-
-// при нажатии Esc закрыть окно редактирования
-
-const onModalEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeOverlayModal();
-  }
-};
-
-// открытие окна редактирования изображения
-
-function openOverlayModal() {
-  uploadOverlay.classList.remove('hidden');
-  body.classList.add('modal-open');
-  document.addEventListener('keydown', onModalEscKeydown);
-  document.addEventListener('click', onModalEscButtonClick);
-}
-
-// закрытие окна редактирования изображения
-
-function closeOverlayModal() {
-  uploadOverlay.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onModalEscKeydown);
-  document.removeEventListener('click', onModalEscButtonClick);
-  uploadForm.reset();
-  imgUploadPreview.removeAttribute('class');
-  resetScale();
-  pristine.reset();
-}
 
 export {
   closeOverlayModal,
