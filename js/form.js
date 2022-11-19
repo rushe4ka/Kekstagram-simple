@@ -68,6 +68,7 @@ const showSuccessMessage = () => {
   const successMessageElement = templateSuccess.cloneNode(true);
   document.addEventListener('keydown', handleEscKeydown);
   document.addEventListener('click', handleOutside);
+  successMessageElement.querySelector('.success__button').addEventListener('click', onErrorButtonClick);
   document.body.append(successMessageElement);
   document.body.style.overflow = 'hidden';
 };
