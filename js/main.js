@@ -1,6 +1,3 @@
-import './overlay-effect.js';
-import './scale.js';
-
 import { setUserFormSubmit, closeOverlayModal, showErrorMessage } from './form.js';
 import { getData } from './api.js';
 import { renderPicturesList } from './create-miniatures.js';

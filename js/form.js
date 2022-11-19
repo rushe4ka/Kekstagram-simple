@@ -1,3 +1,5 @@
+import './overlay-effect.js';
+
 import { sendData } from './api.js';
 import { isEscapeKey, isEnterKey } from './util.js';
 import { resetScale } from './scale.js';
