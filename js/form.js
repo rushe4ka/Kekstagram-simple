@@ -57,10 +57,6 @@ const onModalEscKeydown = (evt) => {
   }
 };
 
-// при клике на крестик закрыть окно редактирования
-
-const onModalEscButtonClick = uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
-
 // сообщение об успешной отправке формы
 
 const showSuccessMessage = () => {
@@ -110,14 +106,14 @@ function openOverlayModal() {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onModalEscKeydown);
-  document.addEventListener('click', onModalEscButtonClick);
+  uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
 }
 
 function closeOverlayModal() {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onModalEscKeydown);
-  document.removeEventListener('click', onModalEscButtonClick);
+  uploadOverlayCancel.removeEventListener('click', (closeOverlayModal));
   uploadForm.reset();
   imgUploadPreview.removeAttribute('class');
   resetScale();
