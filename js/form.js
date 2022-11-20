@@ -141,7 +141,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-const onFormSubmit = (onSuccess) => {
+const onUserFormSubmit = (onSuccess) => {
   uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
@@ -167,5 +167,5 @@ export {
   closeOverlayModal,
   showSuccessMessage,
   showErrorMessage,
-  onFormSubmit
+  onUserFormSubmit
 };
