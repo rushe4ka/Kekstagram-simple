@@ -61,8 +61,10 @@ const handleEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     hideModal();
+    closeOverlayModal();
   }
 };
+
 
 // сообщение об успешной отправке формы
 
@@ -92,6 +94,7 @@ const showErrorMessage = (text) => {
 function hideModal() {
   const messageElement = document.querySelector('.success') || document.querySelector('.error');
   messageElement.remove();
+  uploadOverlay.classList.add('hidden');
   document.removeEventListener('keydown', handleEscKeydown);
   document.removeEventListener('click', handleOutside);
   document.body.style.overflow = 'auto';
