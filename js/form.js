@@ -141,31 +141,28 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-const onUserFormSubmit = (onSuccess) => {
-  uploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const isValid = pristine.validate();
-    if (isValid) {
-      blockSubmitButton();
-      sendData(
-        () => {
-          onSuccess();
-          unblockSubmitButton();
-          showSuccessMessage();
-        },
-        (text) => {
-          showErrorMessage(text);
-          unblockSubmitButton();
-        },
-        new FormData(evt.target),
-      );
-    }
-  });
-};
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const isValid = pristine.validate();
+  if (isValid) {
+    blockSubmitButton();
+    sendData(
+      () => {
+        closeOverlayModal();
+        unblockSubmitButton();
+        showSuccessMessage();
+      },
+      (text) => {
+        showErrorMessage(text);
+        unblockSubmitButton();
+      },
+      new FormData(evt.target),
+    );
+  }
+});
 
 export {
   closeOverlayModal,
   showSuccessMessage,
-  showErrorMessage,
-  onUserFormSubmit
+  showErrorMessage
 };
