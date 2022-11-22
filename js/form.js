@@ -20,6 +20,7 @@ const templateSuccess = document.querySelector('#success')
 const templateError = document.querySelector('#error')
   .content
   .querySelector('.error'); // элемент с образцом разметки окна error
+const messageElement = document.querySelector('.success') || document.querySelector('.error');
 
 // подключение Pristine
 
@@ -60,7 +61,10 @@ const handleOutside = (evt) => {
 const handleEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
+  };
+  if (showSuccessMessage() || showErrorMessage()) {
     hideModal();
+  } else {
     closeOverlayModal();
   }
 };
@@ -91,11 +95,8 @@ const showErrorMessage = (text) => {
 
 // скрыть модальное окно
 
-function hideModal() {
-  const messageElement = document.querySelector('.success') || document.querySelector('.error');
+function hideModal(messageElement) {
   messageElement.remove();
-  uploadOverlay.classList.add('hidden');
-  document.removeEventListener('keydown', handleEscKeydown);
   document.removeEventListener('click', handleOutside);
   document.body.style.overflow = 'auto';
 }
