@@ -20,7 +20,6 @@ const templateSuccess = document.querySelector('#success')
 const templateError = document.querySelector('#error')
   .content
   .querySelector('.error'); // элемент с образцом разметки окна error
-const messageElement = document.querySelector('.success') || document.querySelector('.error');
 
 // подключение Pristine
 
@@ -61,14 +60,14 @@ const handleOutside = (evt) => {
 const handleEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-  };
-  if (showSuccessMessage() || showErrorMessage()) {
-    hideModal();
-  } else {
-    closeOverlayModal();
+    const messageElement = document.querySelector('.success') || document.querySelector('.error');
+    if (messageElement) {
+      hideModal(messageElement);
+    } else {
+      closeOverlayModal();
+    }
   }
 };
-
 
 // сообщение об успешной отправке формы
 
@@ -95,7 +94,8 @@ const showErrorMessage = (text) => {
 
 // скрыть модальное окно
 
-function hideModal(messageElement) {
+function hideModal(messageModal = null) {
+  const messageElement = messageModal || document.querySelector('.success') || document.querySelector('.error');
   messageElement.remove();
   document.removeEventListener('click', handleOutside);
   document.body.style.overflow = 'auto';
@@ -103,7 +103,7 @@ function hideModal(messageElement) {
 
 // при изменении поля загрузки открыть окно редактирования
 
-uploadInput.addEventListener('change', (openOverlayModal));
+uploadInput.addEventListener('change', openOverlayModal);
 
 // при фокусе с клавиатуры открыть окно редактирования
 
@@ -119,14 +119,14 @@ function openOverlayModal() {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', handleEscKeydown);
-  uploadOverlayCancel.addEventListener('click', (closeOverlayModal));
+  uploadOverlayCancel.addEventListener('click', closeOverlayModal);
 }
 
 function closeOverlayModal() {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', handleEscKeydown);
-  uploadOverlayCancel.removeEventListener('click', (closeOverlayModal));
+  uploadOverlayCancel.removeEventListener('click', closeOverlayModal);
   uploadForm.reset();
   imgUploadPreview.removeAttribute('class');
   resetScale();
